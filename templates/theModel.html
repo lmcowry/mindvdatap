@@ -1,0 +1,121 @@
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <title>Rake</title>
+     </head>
+     <body>
+
+         <div>{{winStatement}}</div>
+         {% for anOldGuess in listOfGuesses %}
+             <table>
+                 <tr>
+                     <td id="oldGuessAt0" style={{anOldGuess.colorspot0}}>{{anOldGuess.spot0}}</td>
+                     <td class="guessBorderColumn">|</td>
+                     <td id="oldGuessAt1" style={{anOldGuess.colorspot1}}>{{anOldGuess.spot1}}</td>
+                     <td class="guessBorderColumn">|</td>
+                     <td id="oldGuessAt2" style={{anOldGuess.colorspot2}}>{{anOldGuess.spot2}}</td>
+                     <td class="guessBorderColumn">|</td>
+                     <td id="oldGuessAt3" style={{anOldGuess.colorspot3}}>{{anOldGuess.spot3}}</td>
+                     <td class="guessBorderColumn">|</td>
+                     <td>{{anOldGuess.clue0}}</td>
+                     <td>{{anOldGuess.clue1}}</td>
+                     <td>{{anOldGuess.clue2}}</td>
+                     <td>{{anOldGuess.clue3}}</td>
+                     <td class="guessBorderColumn">|</td>
+                     <td>{{anOldGuess.firstTwo}}</td>
+                     <td class="clueBorderColumn"><b>&amp;</b></td>
+                     <td>{{anOldGuess.firstThree}}</td>
+                 </tr>
+             </table>
+         {% endfor %}
+
+         <br>
+         <form method="post">
+
+             <table>
+                 <tr>
+                     <td id="guessAt0" >
+                         <input id="guessAt0Input" type="text" size="1" name="guessAt0" value="{{guessAt0}}"/>
+                     </td>
+                     <td class="guessBorderColumn">|</td>
+                     <td id="guessAt1">
+                         <input id="guessAt1Input" type="text" size="1" name="guessAt1" value="{{guessAt1}}"/>
+                     </td>
+                     <td class="guessBorderColumn">|</td>
+                     <td id="guessAt2">
+                         <input id="guessAt2Input" type="text" size="1" name="guessAt2" value="{{guessAt2}}"/>
+                     </td>
+                     <td class="guessBorderColumn">|</td>
+                     <td id="guessAt3">
+                         <input id="guessAt3Input" type="text" size="1" name="guessAt3" value="{{guessAt3}}"/>
+                     </td>
+
+                 </tr>
+             </table>
+             <div>{{error}}</div>
+             <table>
+                 <tr>
+                     <td id="guessSubmit">
+                         <input type="submit"/>
+                     </td>
+                 </tr>
+             </table>
+         </form>
+
+     <br>
+         <p>
+             Possible answers: r g b c y m <br>
+             ! right color, right spot <br> ? right color, wrong spot <br>
+             1st 2 like this <b>&amp;</b> 1st 3 like this <br> <br>
+             Go to <a href="/delete">/delete</a> to delete answers and guesses <br>
+             Go to <a href="/add">/add</a> to add answers <br> <br>
+             The goal is to guess all 5 answers
+         </p>
+
+
+     </body>
+
+     <script type="text/javascript">
+
+     window.onload = function() {
+
+
+         var textEntry0 = document.getElementById("guessAt0Input");
+         var textEntry1 = document.getElementById("guessAt1Input");
+         var textEntry2 = document.getElementById("guessAt2Input");
+         var textEntry3 = document.getElementById("guessAt3Input");
+
+         var textEntries = [textEntry0, textEntry1, textEntry2, textEntry3];
+
+         textEntries.forEach(function(element){
+             element.oninput = function() {
+
+                 switch(element.value) {
+                     case "r":
+                         element.style.backgroundColor = "red";
+                         break;
+                     case "g":
+                         element.style.backgroundColor = "green";
+                         break;
+                     case "b":
+                         element.style.backgroundColor = "blue";
+                         break;
+                     case "c":
+                         element.style.backgroundColor = "cyan";
+                         break;
+                     case "y":
+                         element.style.backgroundColor = "yellow";
+                         break;
+                     case "m":
+                         element.style.backgroundColor = "magenta";
+                         break;
+                     default:
+                         element.style.backgroundColor = "";
+                 }
+
+             };
+         });
+
+     }
+     </script>
+     </html>
